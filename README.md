@@ -1,1 +1,1 @@
-# web_design_i
+Intro to Web Design I by Joseph Pankonien
