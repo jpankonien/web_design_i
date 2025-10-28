@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon Flicker Background</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    body {
+      /* Your PNG image */
+      background-image: url('jospan_media_branding/jospan_media_initials_color.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      /* Neon flicker animation */
+      animation: neonFlicker 7s infinite;
+    }
+
+    /* Keyframes for subtle flicker effect */
+    @keyframes neonFlicker {
+      0%, 100% { filter: brightness(1) opacity(1); }
+      5% { filter: brightness(0.9) opacity(0.95); }
+      8% { filter: brightness(1.1) opacity(1); }
+      12% { filter: brightness(0.8) opacity(0.9); }
+      20%, 60% { filter: brightness(1) opacity(1); }
+      63% { filter: brightness(0.85) opacity(0.9); }
+      67% { filter: brightness(1.05) opacity(1); }
+      80% { filter: brightness(0.9) opacity(0.95); }
+      90% { filter: brightness(1.1) opacity(1); }
+    }
+  </style>
+</head>
+<body></body>
+</html>
