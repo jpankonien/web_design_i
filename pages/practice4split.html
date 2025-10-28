@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Waco - Split Decisions</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh; /* full viewport height */
+      width: 100vw;
+    }
+
+    iframe {
+      flex: 1; /* each iframe takes half width */
+      border: 1px solid #ccc;
+      height: 100%;
+      width: 50%;
+    }
+
+    /* Optional: add a subtle divider between the iframes */
+    .container::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #999;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <iframe src="practice4a.html"></iframe>
+    <iframe src="practice4b.html"></iframe>
+  </div>
+</body>
+</html>
