@@ -2,60 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Neon Flicker Background</title>
+  <title>Neon Sign Logo</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
+      background: #000; /* Dark background for neon effect */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
-      background: #000;
-    }
-
-    body {
-      background-image: url('../jospan_media_branding/jospan_media_initials_color.png');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      animation: neonFlicker 7s infinite;
-      position: relative;
-      z-index: 0;
     }
 
     body::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('../jospan_media_branding/jospan_media_initials_color.png');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: blur(20px) brightness(1.2) opacity(0.3);
-      animation: glowPulse 6s infinite alternate;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      z-index: -2;
+    }
+
+    .neon-logo {
+      position: relative;
+      width: 400px; /* adjust as needed */
+      height: auto;
+      background: url('../media/jospan_media_branding/jospan_media_initials_color.png') no-repeat center/contain;
+      filter: brightness(1.2);
+      animation: neonFlicker 5s infinite;
+    }
+
+    /* Simulate neon glow */
+    .neon-logo::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('../media/jospan_media_branding/jospan_media_initials_color.png') no-repeat center/contain;
+      filter: blur(25px) brightness(2.5) opacity(0.5);
       z-index: -1;
+      animation: glowPulse 5s infinite alternate;
     }
 
+    /* Flicker animation for the logo */
     @keyframes neonFlicker {
-      0%, 100% { filter: brightness(1) opacity(1); }
-      5% { filter: brightness(0.9) opacity(0.95); }
-      8% { filter: brightness(1.1) opacity(1); }
-      12% { filter: brightness(0.8) opacity(0.9); }
-      20%, 60% { filter: brightness(1) opacity(1); }
-      63% { filter: brightness(0.85) opacity(0.9); }
-      67% { filter: brightness(1.05) opacity(1); }
-      80% { filter: brightness(0.9) opacity(0.95); }
-      90% { filter: brightness(1.1) opacity(1); }
+      0%, 100% { filter: brightness(1.2); }
+      10% { filter: brightness(0.9); }
+      20% { filter: brightness(1.4); }
+      30% { filter: brightness(0.95); }
+      40% { filter: brightness(1.3); }
+      50% { filter: brightness(1); }
+      60% { filter: brightness(1.2); }
+      70% { filter: brightness(0.9); }
+      80% { filter: brightness(1.35); }
+      90% { filter: brightness(1.1); }
     }
 
+    /* Glow pulse behind the logo */
     @keyframes glowPulse {
-      from { filter: blur(20px) brightness(1.1) opacity(0.25); }
-      to { filter: blur(25px) brightness(1.4) opacity(0.4); }
+      from { filter: blur(20px) brightness(2) opacity(0.4); }
+      to { filter: blur(30px) brightness(3) opacity(0.6); }
     }
   </style>
 </head>
-<body></body>
+<body>
+  <div class="neon-logo"></div>
+</body>
 </html>
