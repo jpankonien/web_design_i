@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Waco - Split Decisions</title>
+  <title>About Waco - Triple Comparison</title>
   <style>
     html, body {
       margin: 0;
@@ -21,29 +21,33 @@
     }
 
     iframe {
-      flex: 1; /* each iframe takes half width */
+      flex: 1; /* each iframe takes equal width */
       border: 1px solid #ccc;
       height: 100%;
-      width: 50%;
+      width: 33.33%;
     }
 
-    /* Optional: add a subtle divider between the iframes */
-    .container::before {
+    /* Optional: add subtle dividers */
+    .container::before,
+    .container::after {
       content: "";
       position: absolute;
-      left: 50%;
       top: 0;
       bottom: 0;
       width: 2px;
       background: #999;
       z-index: 1;
     }
+
+    .container::before { left: 33.33%; }
+    .container::after { left: 66.66%; }
   </style>
 </head>
 <body>
   <div class="container">
     <iframe src="practice4a.html"></iframe>
     <iframe src="practice4b.html"></iframe>
+    <iframe src="practice4c.html"></iframe>
   </div>
 </body>
 </html>
