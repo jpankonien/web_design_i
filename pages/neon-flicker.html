@@ -14,17 +14,31 @@
     }
 
     body {
-      /* Your PNG image */
       background-image: url('jospan_media_branding/jospan_media_initials_color.png');
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-
-      /* Neon flicker animation */
       animation: neonFlicker 7s infinite;
+      position: relative;
+      z-index: 0;
     }
 
-    /* Keyframes for subtle flicker effect */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('jospan_media_branding/jospan_media_initials_color.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(20px) brightness(1.2) opacity(0.3);
+      animation: glowPulse 6s infinite alternate;
+      z-index: -1;
+    }
+
     @keyframes neonFlicker {
       0%, 100% { filter: brightness(1) opacity(1); }
       5% { filter: brightness(0.9) opacity(0.95); }
@@ -35,6 +49,11 @@
       67% { filter: brightness(1.05) opacity(1); }
       80% { filter: brightness(0.9) opacity(0.95); }
       90% { filter: brightness(1.1) opacity(1); }
+    }
+
+    @keyframes glowPulse {
+      from { filter: blur(20px) brightness(1.1) opacity(0.25); }
+      to { filter: blur(25px) brightness(1.4) opacity(0.4); }
     }
   </style>
 </head>
