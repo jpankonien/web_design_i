@@ -22,7 +22,6 @@
       z-index: 5;
     }
 
-    /* The button */
     button {
       background-color: #444;
       color: white;
@@ -38,7 +37,6 @@
       background-color: #666;
     }
 
-    /* Spider container */
     .spider {
       position: fixed;
       top: -1200px; 
@@ -73,17 +71,6 @@
       50% { transform: translateX(-50%) rotate(-2deg); }
     }
 
-    .spider::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100vh;
-      background-color: white;
-      transform: translateX(-50%);
-      z-index: -1;
-    }
 
     .drop {
       animation: dropDown 2.5s ease-out forwards, sway 3s ease-in-out 2.5s infinite;
