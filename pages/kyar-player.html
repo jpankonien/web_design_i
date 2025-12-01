@@ -8,10 +8,10 @@
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 18px;
       background: #fff;
       color: #222;
+      padding: 20px;
+      margin: 0;
     }
     .player {
       max-width: 420px;
@@ -19,9 +19,9 @@
       text-align: center;
     }
     .title {
-      font-weight: 700;
+      font-weight: bold;
       color: #7b1e11;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .btn {
       display: inline-block;
@@ -30,10 +30,9 @@
       font-size: 15px;
       border-radius: 6px;
       border: 1px solid #7b1e11;
-      background: #fff;
+      background: #ffffff;
       color: #7b1e11;
       cursor: pointer;
-      user-select: none;
     }
     .btn:active {
       transform: translateY(1px);
@@ -42,20 +41,22 @@
       width: 100%;
       margin-top: 10px;
     }
-    .muted {
-      opacity: .6;
+    #status {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
-  <div class="player" role="application" aria-label="KYAR 98.3 FM player">
+  <div class="player">
 
     <div class="title">KYAR 98.3 FM — Central Texas</div>
 
-    <!-- FIXED: Player now uses your proxy, not the CORS-blocked stream -->
+    <!-- ✔ FIXED: Proxy adds CORS headers -->
     <audio id="kyarAudio" preload="none">
-      <source src="/kyar-proxy.php" type="audio/mpeg">
+      <source src="https://corsproxy.io/?https://ssl-1.stream.miriamtech.net/red-c/KYAR" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
 
@@ -64,14 +65,13 @@
       <button id="stopBtn" class="btn">■ Stop</button>
     </div>
 
-    <div style="margin-top:8px;font-size:13px;color:#555">
-      <label for="vol" style="display:block;margin-bottom:6px">Volume</label>
-      <input id="vol" class="volume" type="range" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+    <div style="margin-top: 8px;">
+      <label for="vol" style="display:block;font-size:13px;margin-bottom:6px;">Volume</label>
+      <input id="vol" class="volume" type="range" min="0" max="1" step="0.01" value="0.6">
     </div>
 
-    <div id="status" style="margin-top:10px;font-size:13px;color:#777">
-      Status: stopped
-    </div>
+    <div id="status">Status: stopped</div>
+
   </div>
 
 <script>
@@ -85,33 +85,31 @@
   audio.volume = parseFloat(vol.value);
 
   function updateStatus() {
-    if (audio.paused) status.textContent = 'Status: paused';
-    else status.textContent = 'Status: playing';
+    status.textContent = audio.paused ? "Status: paused" : "Status: playing";
   }
 
   toggle.addEventListener('click', async () => {
     try {
       if (audio.paused) {
         await audio.play();
-        toggle.textContent = '❚❚ Pause';
-        toggle.setAttribute('aria-pressed', 'true');
+        toggle.textContent = "❚❚ Pause";
+        toggle.setAttribute("aria-pressed", "true");
       } else {
         audio.pause();
-        toggle.textContent = '▶ Play';
-        toggle.setAttribute('aria-pressed', 'false');
+        toggle.textContent = "▶ Play";
+        toggle.setAttribute("aria-pressed", "false");
       }
       updateStatus();
-    } catch(err) {
-      status.textContent = 'Status: playback failed — check proxy or network.';
-      console.error(err);
+    } catch (err) {
+      status.textContent = "Playback failed.";
     }
   });
 
   stopBtn.addEventListener('click', () => {
     audio.pause();
     audio.currentTime = 0;
-    toggle.textContent = '▶ Play';
-    toggle.setAttribute('aria-pressed','false');
+    toggle.textContent = "▶ Play";
+    toggle.setAttribute("aria-pressed", "false");
     updateStatus();
   });
 
@@ -119,13 +117,8 @@
     audio.volume = parseFloat(vol.value);
   });
 
-  audio.addEventListener('playing', updateStatus);
-  audio.addEventListener('pause', updateStatus);
-  audio.addEventListener('ended', () => {
-    toggle.textContent = '▶ Play';
-    toggle.setAttribute('aria-pressed','false');
-    updateStatus();
-  });
+  audio.addEventListener("playing", updateStatus);
+  audio.addEventListener("pause", updateStatus);
 })();
 </script>
 
